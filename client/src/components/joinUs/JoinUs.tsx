@@ -14,7 +14,7 @@ const JoinUs = () => {
           opacity: "0.5",
         }}
       />
-      <div className="join-us-box align-self-center">
+      <div className="container">
         <h1 className="display-1 fw-bold">İlgi Çekici Aktiviteleri Keşfedin</h1>
         <p className="display-6 mt-5">
           Zamanınızın tadını çıkarmak için etkileşimli ve anlamlı aktivitelerle
