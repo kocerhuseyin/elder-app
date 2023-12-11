@@ -1,0 +1,11 @@
+.footer {
+  width: 100%;
+  margin: 0;
+  background-color: #ebe3d5;
+  color: #776b5d;
+}
+
+.footer h1 {
+  padding-block: 1rem;
+  padding-right: 5%;
+}

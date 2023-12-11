@@ -1,0 +1,14 @@
+.join-us-content-box {
+  width: 55%;
+  position: absolute;
+  top: 35%;
+  left: 5%;
+}
+
+.button {
+  color: #776b5d;
+  background-color: #ebe3d5;
+  border: none;
+  border-radius: 5rem;
+  cursor: pointer;
+}

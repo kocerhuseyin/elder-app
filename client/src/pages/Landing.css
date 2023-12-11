@@ -1,0 +1,14 @@
+.box {
+  position: relative;
+  width: 100%;
+  height: 90vh;
+  color: #776b5d;
+}
+
+.bg-light {
+  background-color: #f1efef !important;
+}
+
+.bg-lighter {
+  background-color: #f3f3f3 !important;
+}
