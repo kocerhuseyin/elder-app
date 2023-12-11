@@ -3,7 +3,7 @@ import "./Discover.css";
 
 const Discover = () => {
   return (
-    <div className="container display-6">
+    <div className="discover-content-box display-6">
       <p>
         Türkiye'de özel olarak tasarlanmış eşsiz bir platform olan Zaman Dolusu
         ile tanışın. Misyonumuz, bireylerin tatmin edici ve ilgi çekici bir
