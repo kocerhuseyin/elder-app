@@ -1,8 +1,11 @@
 import React from "react";
 import JoinUsImage from "../../images/joinUs.png";
 import "./JoinUs.css";
+import { useNavigate } from "react-router-dom";
 
 const JoinUs = () => {
+  const navigate = useNavigate();
+
   return (
     <div>
       <img
@@ -23,6 +26,7 @@ const JoinUs = () => {
         <button
           type="button"
           className="display-6 fw-bold mt-5 p-3 button ps-5 pe-5"
+          onClick={() => navigate("/register")}
         >
           Şimdi Katıl
         </button>
