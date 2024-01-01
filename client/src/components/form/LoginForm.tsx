@@ -1,8 +1,8 @@
 import React from "react";
-import "./RegisterForm.css";
+import "./LoginForm.css";
 import { useNavigate } from "react-router-dom";
 
-const RegisterForm = () => {
+const LoginForm = () => {
   const navigate = useNavigate();
 
   return (
@@ -30,17 +30,17 @@ const RegisterForm = () => {
         type="button"
         className="col-12 btn btn-block mb-4 p-3 rounded-5"
       >
-        Kayıt ol
+        Giriş yap
       </button>
 
       <div className="text-center">
         <p>
-          Hesabınız var mı?{" "}
+          Hesabınız yok mu?{" "}
           <button
-            className="login-button fw-bold"
-            onClick={() => navigate("/login")}
+            className="register-button fw-bold"
+            onClick={() => navigate("/register")}
           >
-            Giriş yap
+            Kayıt ol
           </button>
         </p>
       </div>
@@ -48,4 +48,4 @@ const RegisterForm = () => {
   );
 };
 
-export default RegisterForm;
+export default LoginForm;

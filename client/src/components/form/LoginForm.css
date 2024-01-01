@@ -1,0 +1,38 @@
+#email, #email:focus, #email::placeholder, #password, #password:focus, #password::placeholder{
+  background-color: #f1efef;
+  font-weight: bold;
+  color: #776b5d;
+  padding-left: 1rem;
+  font-size:larger;
+}
+
+.btn {
+  background-color: #776b5d;
+  color: #f1efef;
+}
+
+.btn:hover {
+  background-color: #f1efef;
+  color: #776b5d;
+}
+
+.register-button {
+  background: none !important;
+  border: none;
+  padding: 0 !important;
+  text-decoration: none;
+  cursor: pointer;
+  color: #776b5d;
+}
+
+.form p{
+  color: #776b5d;
+  font-size: large;
+}
+
+.form{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -10%);
+}
