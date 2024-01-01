@@ -1,6 +1,6 @@
 import React from "react";
 import LoginRegisterBackground from "../images/loginRegisterBackground.png";
-import Form from "../components/form/RegisterForm";
+import RegisterForm from "../components/form/RegisterForm";
 import Navbar from "../components/navbar/Navbar";
 
 const Register: React.FC = () => {
@@ -25,7 +25,7 @@ const Register: React.FC = () => {
           height: "100vh",
         }}
       />
-      <Form />
+      <RegisterForm />
     </div>
   );
 };
