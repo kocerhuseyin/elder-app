@@ -6,6 +6,7 @@ import JoinUs from "../components/joinUs/JoinUs";
 import Discover from "../components/discover/Discover";
 import Works from "../components/works/Works";
 import AboutUs from "../components/aboutUs/AboutUs";
+import Chat from "../pages/Chats";
 
 const Landing: React.FC = () => {
   return (
@@ -22,6 +23,9 @@ const Landing: React.FC = () => {
       </div>
       <div className="box bg-light">
         <AboutUs />
+      </div>
+      <div className="box bg-lighter">
+        <Chat />
       </div>
       <Footer />
     </>
