@@ -1,7 +1,6 @@
 import React from "react";
 import Navbar from "../components/navbar/Navbar";
 import LogoutIcon from "../images/logout.svg";
-import "./Friends.css";
 import Footer from "../components/footer/Footer";
 import Sidebar from "../components/sidebar/Sidebar";
 
