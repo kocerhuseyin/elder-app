@@ -7,6 +7,7 @@ import Landing from "../pages/Landing";
 import Login from "../pages/Login";
 import NotFound from "../pages/NotFound";
 import Register from "../pages/Register";
+import Reminders from "../pages/Reminders";
 
 const routes = [
   {
@@ -32,6 +33,10 @@ const routes = [
   {
     path: "/games",
     element: <Games />,
+  },
+  {
+    path: "/reminders",
+    element: <Reminders />,
   },
   {
     path: "*",

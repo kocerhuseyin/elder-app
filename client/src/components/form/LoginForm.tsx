@@ -29,6 +29,7 @@ const LoginForm = () => {
         data-mdb-ripple-init
         type="button"
         className="col-12 btn btn-block mb-4 p-3 rounded-5"
+        onClick={() => navigate("/friends")}
       >
         Giriş yap
       </button>

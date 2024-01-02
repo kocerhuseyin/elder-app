@@ -1,0 +1,18 @@
+.sidebar {
+  background-color: #f3eeea !important;
+}
+
+.list-group-item {
+  background-color: #f3eeea !important;
+  border-color: transparent !important;
+  width: 100% !important;
+  height: 50px !important;
+  border-style: solid !important;
+  color: #776B5D !important;
+}
+
+.list-group-item:hover {
+  background-color: #ebe3d5 !important;
+}
+
+
