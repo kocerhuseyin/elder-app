@@ -141,7 +141,24 @@ router.get('/get-users', async (req, res) => {
     res.status(500).send(error);
   }
 });
-module.exports = router;
+
+// Get Friend List Route
+router.get('/friends', authenticateToken, async (req, res) => {
+  try {
+    const userId = req.user.id; // Extract user ID from JWT
+
+    // Find the user and retrieve their friends list
+    const user = await User.findById(userId).populate('friends', 'username profileInfo');
+    if (!user) {
+      return res.status(404).send('User not found');
+    }
+
+    // Respond with the friends list
+    res.json(user.friends);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
 
 // Send Friend Request Route
 router.post('/send-friend-request/:receiver', authenticateToken, async (req, res) => {
@@ -193,3 +210,6 @@ router.post('/accept-friend-request/:sender', authenticateToken, async (req, res
     res.status(500).send(error);
   }
 });
+
+
+module.exports = router;
