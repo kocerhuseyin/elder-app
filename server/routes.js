@@ -18,7 +18,6 @@ router.post('/register', async (req, res) => {
       profileInfo: {
         name: req.body.profileInfo?.name,
         age: req.body.profileInfo?.age,
-        photo: req.body.profileInfo?.photo
       }
     });
 
@@ -35,6 +34,19 @@ router.post('/register', async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+
+router.put('/user/:id', async (req, res) => {
+    try {
+      const updatedUser = await User.findByIdAndUpdate(
+        req.params.id,
+        { $set: { profileInfo: req.body.profileInfo } },
+        { new: true }
+      );
+      res.json(updatedUser);
+    } catch (error) {
+      res.status(500).send(error);
+    }
+  });
 
 // Export the router
 module.exports = router;
