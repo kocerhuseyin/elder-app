@@ -36,6 +36,7 @@ router.post('/register', async (req, res) => {
   }
 });
 
+// Login Route
 router.post('/login', async (req, res) => {
     try {
       const { username, password } = req.body;
@@ -96,4 +97,30 @@ router.put('/user/update', async (req, res) => {
       }
     });
 
+// Add Friend Route
+router.post('/user/:userId/addFriend/:friendId', async (req, res) => {
+  try {
+    const { userId, friendId } = req.params;
+
+    // Add friendId to the user's friends list
+    await User.findByIdAndUpdate(userId, { $addToSet: { friends: friendId } });
+    // Optionally, add userId to the friend's friends list
+    await User.findByIdAndUpdate(friendId, { $addToSet: { friends: userId } });
+
+    res.status(200).send('Friend added successfully');
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
+// Get Users Route
+router.get('/get-users', async (req, res) => {
+  try {
+    const { name } = req.query;
+    const users = await User.find({ "profileInfo.name": new RegExp(name, 'i') });
+    res.json(users);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
 module.exports = router;

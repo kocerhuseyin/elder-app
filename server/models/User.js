@@ -7,6 +7,12 @@ const userSchema = new mongoose.Schema({
   profileInfo: {
     name: String,
     age: Number
+  },
+  friends: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+  friendRequests: {
+    sent: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+    received: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
   }
 });
+
 module.exports = mongoose.model('User', userSchema);
