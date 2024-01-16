@@ -57,17 +57,43 @@ router.post('/login', async (req, res) => {
   });
 
 // Update User Route
-router.put('/user/:id', async (req, res) => {
+router.put('/user/update', async (req, res) => {
     try {
-      const updatedUser = await User.findByIdAndUpdate(
-        req.params.id,
+    // Check if the authorization header is set
+    if (!req.headers.authorization) {
+        return res.status(401).send('Authorization header is missing');
+      }
+
+    // Extract the token from the Authorization header
+    const token = req.headers.authorization.split(' ')[1];
+    if (!token) {
+      return res.status(401).send('No token provided');
+    }
+      
+    // Verify the token
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    if (!decoded) {
+      return res.status(401).send('Invalid token');
+    }
+  
+    // Find user by ID from token and update
+    const updatedUser = await User.findByIdAndUpdate(
+        decoded.id,
         { $set: { profileInfo: req.body.profileInfo } },
         { new: true }
       );
+      
+      // Exclude password from the response
+      updatedUser.password = undefined;
+  
       res.json(updatedUser);
     } catch (error) {
-      res.status(500).send(error);
-    }
-  });
+        if (error.name === 'JsonWebTokenError') {
+          res.status(401).send('Invalid token');
+        } else {
+          res.status(500).send(error.message);
+        }
+      }
+    });
 
 module.exports = router;
