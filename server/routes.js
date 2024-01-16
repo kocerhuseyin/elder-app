@@ -5,6 +5,24 @@ const User = require('./models/User');
 
 const router = express.Router();
 
+const authenticateToken = (req, res, next) => {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
+  if (token == null) return res.sendStatus(401);
+
+  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+    if (err) return res.sendStatus(403);
+    req.user = user;
+    next();
+  });
+};
+
+// Validate User ID
+const isValidUser = async (userId) => {
+  const user = await User.findById(userId);
+  return !!user;
+};
+
 // User Registration Route
 router.post('/register', async (req, res) => {
   try {
@@ -36,6 +54,7 @@ router.post('/register', async (req, res) => {
   }
 });
 
+// Login Route
 router.post('/login', async (req, res) => {
     try {
       const { username, password } = req.body;
@@ -96,4 +115,81 @@ router.put('/user/update', async (req, res) => {
       }
     });
 
+// Add Friend Route
+router.post('/user/:userId/addFriend/:friendId', async (req, res) => {
+  try {
+    const { userId, friendId } = req.params;
+
+    // Add friendId to the user's friends list
+    await User.findByIdAndUpdate(userId, { $addToSet: { friends: friendId } });
+    // Optionally, add userId to the friend's friends list
+    await User.findByIdAndUpdate(friendId, { $addToSet: { friends: userId } });
+
+    res.status(200).send('Friend added successfully');
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
+// Get Users Route
+router.get('/get-users', async (req, res) => {
+  try {
+    const { name } = req.query;
+    const users = await User.find({ "profileInfo.name": new RegExp(name, 'i') });
+    res.json(users);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
 module.exports = router;
+
+// Send Friend Request Route
+router.post('/send-friend-request/:receiver', authenticateToken, async (req, res) => {
+  try {
+    const senderId = req.user.id; // Extract sender ID from JWT
+    const { receiver } = req.params;
+
+    // Validate user IDs
+    if (!(await isValidUser(senderId)) || !(await isValidUser(receiver))) {
+      return res.status(404).send('User not found');
+    }
+
+    // Check if the sender is not sending a request to themselves
+    if (senderId === receiver) {
+      return res.status(400).send('Cannot send friend request to yourself');
+    }
+
+    // Update sent and received friend requests for both sender and receiver
+    await User.findByIdAndUpdate(senderId, { $push: { 'friendRequests.sent' : receiver}});
+    await User.findByIdAndUpdate(receiver, { $push: { 'friendRequests.received': senderId}});
+
+    res.status(200).send('Friend request sent');
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
+
+// Accept Friend Request Route
+router.post('/accept-friend-request/:sender', authenticateToken, async (req, res) => {
+  try {
+    const receiverId = req.user.id; // Extract receiver ID from JWT
+    const { sender } = req.params;
+
+    // Fetch the receiver's user data
+    const receiverUser = await User.findById(receiverId);
+
+    // Validate user IDs and check if the receiver has received a request from the sender
+    if (!(await isValidUser(sender)) || !receiverUser || !receiverUser.friendRequests.received.includes(sender)) {
+      return res.status(404).send('User not found or no request received');
+    }
+
+    // Update friends list for both sender and receiver
+    await User.findByIdAndUpdate(sender, { $push: { friends: receiverId }, $pull: { 'friendRequests.sent' : receiverId}});
+    await User.findByIdAndUpdate(receiverId, { $push: { friends: sender }, $pull: { 'friendRequests.received': sender}});
+
+    res.status(200).send('Friend request accepted');
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
