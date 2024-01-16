@@ -6,13 +6,13 @@ const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
 const mongoose = require("mongoose");
-const userRoutes = require('./routes');
+const routes = require('./routes');
 
 // Middleware to parse JSON bodies
 app.use(express.json());
 
 // Use the user routes
-app.use('/api', userRoutes);
+app.use('/api', routes);
 
 app.get("/", (req, res) => {
   res.send("Server is running");
