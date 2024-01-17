@@ -10,8 +10,8 @@ const Sidebar = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="d-block sidebar col-2 px-3 pt-4 h-100">
-      <div className="list-group">
+    <div className="d-block sidebar col-2 pt-4 h-100">
+      <div className="list-group mx-4">
         <button
           className={
             "list-group-item list-group-item-action py-2 custom-item" +
