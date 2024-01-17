@@ -1,0 +1,16 @@
+.card {
+  background-color: #EBE3D5;
+  border-color: transparent;
+}
+
+.card-body {
+  color: #776B5D;
+  font-size: x-large !important;
+}
+
+.close-button {
+  background: none !important;
+  border: none;
+  padding: 0 !important;
+  cursor: pointer;
+}

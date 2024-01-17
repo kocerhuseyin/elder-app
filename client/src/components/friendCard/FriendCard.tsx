@@ -6,7 +6,6 @@ const FriendCard = ({ image, name }: { image: string; name: string }) => {
     <div className="card col-2 m-5">
       <img
         width="75%"
-        height="75%"
         className="rounded-circle mx-auto"
         alt={image}
         src={image}

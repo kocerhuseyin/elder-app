@@ -14,42 +14,42 @@ const Sidebar = () => {
       <div className="list-group mx-4">
         <button
           className={
-            "list-group-item list-group-item-action py-2 custom-item" +
+            "list-group-item list-group-item-action py-2 custom-item ps-5" +
             (window.location.pathname === "/friends" ? " active" : "")
           }
           onClick={() => navigate("/friends")}
         >
-          <img src={FriendsIcon} alt="FriendsIcon" className="me-3" />
+          <img src={FriendsIcon} alt="FriendsIcon" className="me-3 ps-5" />
           <span className="align-self-center">Arkadaşlar</span>
         </button>
         <button
           className={
-            "list-group-item list-group-item-action py-2 custom-item" +
+            "list-group-item list-group-item-action py-2 custom-item ps-5" +
             (window.location.pathname === "/chats" ? " active" : "")
           }
           onClick={() => navigate("/chats")}
         >
-          <img src={ChatsIcon} alt="ChatsIcon" className="me-3" />
+          <img src={ChatsIcon} alt="ChatsIcon" className="me-3 ps-5" />
           <span className="align-self-center">Sohbetler</span>
         </button>
         <button
           className={
-            "list-group-item list-group-item-action py-2 custom-item" +
+            "list-group-item list-group-item-action py-2 custom-item ps-5" +
             (window.location.pathname === "/games" ? " active" : "")
           }
           onClick={() => navigate("/games")}
         >
-          <img src={GamesIcon} alt="GamesIcon" className="me-3" />
+          <img src={GamesIcon} alt="GamesIcon" className="me-3 ps-5" />
           <span className="align-self-center">Oyunlar</span>
         </button>
         <button
           className={
-            "list-group-item list-group-item-action py-2 custom-item" +
+            "list-group-item list-group-item-action py-2 custom-item ps-5" +
             (window.location.pathname === "/reminders" ? " active" : "")
           }
           onClick={() => navigate("/reminders")}
         >
-          <img src={RemindersIcon} alt="RemindersIcon" className="me-3" />
+          <img src={RemindersIcon} alt="RemindersIcon" className="me-3 ps-5" />
           <span className="align-self-center">Anımsatıcılar</span>
         </button>
       </div>
