@@ -2,6 +2,7 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('./models/User');
+const Chat = require('./models/Chat');
 
 const router = express.Router();
 
@@ -186,7 +187,6 @@ router.post('/send-friend-request/:receiver', authenticateToken, async (req, res
   }
 });
 
-
 // Accept Friend Request Route
 router.post('/accept-friend-request/:sender', authenticateToken, async (req, res) => {
   try {
@@ -211,5 +211,58 @@ router.post('/accept-friend-request/:sender', authenticateToken, async (req, res
   }
 });
 
+// Send Message Route
+router.post('/send-message/:receiverId', authenticateToken, async (req, res) => {
+  try {
+    const senderId = req.user.id; // Extract sender ID from JWT
+    const receiverId = req.params.receiverId;
+    const { message } = req.body;
+
+    // Check for an existing chat between sender and receiver
+    let chat = await Chat.findOne({ participants: { $all: [senderId, receiverId] } });
+
+    // If no chat exists, create a new one
+    if (!chat) {
+      chat = new Chat({
+        participants: [senderId, receiverId],
+        messages: []
+      });
+    }
+
+    // Add new message to chat
+    const newMessage = {
+      sender: senderId,
+      message: message
+    };
+    chat.messages.push(newMessage);
+    await chat.save();
+
+    res.status(200).send('Message sent');
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+});
+
+// Fetch Messages Route
+router.get('/fetch-messages/:receiverId', authenticateToken, async (req, res) => {
+  try {
+    const senderId = req.user.id; // Extract sender ID from JWT
+    const receiverId = req.params.receiverId;
+
+    // Find the chat between sender and receiver
+    const chat = await Chat.findOne({ 
+      participants: { $all: [senderId, receiverId] }
+    }).populate('messages.sender', 'username'); // Populate sender details in each message
+
+    if (!chat) {
+      return res.status(404).send('Chat not found');
+    }
+
+    // Return the entire chat including all messages
+    res.status(200).json(chat);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+});
 
 module.exports = router;

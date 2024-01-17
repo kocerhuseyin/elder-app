@@ -15,4 +15,11 @@ const userSchema = new mongoose.Schema({
   }
 });
 
+userSchema.add({
+  chats: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Chat'
+  }]
+});
+
 module.exports = mongoose.model('User', userSchema);
