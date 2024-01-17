@@ -19,7 +19,42 @@ app.get("/", (req, res) => {
 });
 
 io.on("connection", (socket) => {
-  console.log("a user connected");
+  console.log("a user connected: " + socket.id);
+
+  // Event for sending a message
+  socket.on('sendMessage', async (data) => {
+    const { senderId, receiverId, message } = data;
+
+    // Save the message to the database
+    let chat = await Chat.findOne({ participants: { $all: [senderId, receiverId] } });
+    if (!chat) {
+      chat = new Chat({ participants: [senderId, receiverId], messages: [] });
+      await chat.save();
+    }
+    const newMessage = {
+      sender: senderId,
+      message: message,
+      timestamp: new Date()
+    };
+    chat.messages.push(newMessage);
+    await chat.save();
+
+    // Emit the message to both the sender and receiver
+    // Assuming each user connects with a socket room named after their user ID
+    io.to(senderId).emit('receiveMessage', newMessage);
+    io.to(receiverId).emit('receiveMessage', newMessage);
+  });
+
+  // Handling user joining their own room with their user ID
+  // This requires that the client sends their userID when they connect
+  socket.on('joinRoom', (userId) => {
+    socket.join(userId);
+    console.log(`User ${userId} joined room: ${userId}`);
+  });
+
+  socket.on('disconnect', () => {
+    console.log('user disconnected: ' + socket.id);
+  });
 });
 
 const PORT = process.env.PORT || 5000;
