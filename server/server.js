@@ -7,6 +7,7 @@ const { Server } = require("socket.io");
 const io = new Server(server);
 const mongoose = require("mongoose");
 const routes = require('./routes');
+const Chat = require('./models/Chat');
 
 // Middleware to parse JSON bodies
 app.use(express.json());
