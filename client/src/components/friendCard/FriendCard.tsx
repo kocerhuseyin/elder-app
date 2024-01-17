@@ -1,7 +1,7 @@
 import React from "react";
-import "./Card.css";
+import "./FriendCard.css";
 
-const Card = ({ image, name }: { image: string; name: string }) => {
+const FriendCard = ({ image, name }: { image: string; name: string }) => {
   return (
     <div className="card col-2 m-5">
       <img
@@ -18,4 +18,4 @@ const Card = ({ image, name }: { image: string; name: string }) => {
   );
 };
 
-export default Card;
+export default FriendCard;

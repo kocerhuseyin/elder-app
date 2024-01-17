@@ -3,7 +3,7 @@ import Navbar from "../components/navbar/Navbar";
 import LogoutIcon from "../images/logout.svg";
 import Footer from "../components/footer/Footer";
 import Sidebar from "../components/sidebar/Sidebar";
-import Card from "../components/card/Card";
+import FriendCard from "../components/friendCard/FriendCard";
 import Friend1 from "../images/friend1.svg";
 import Friend2 from "../images/friend2.svg";
 
@@ -56,7 +56,7 @@ const Friends: React.FC = () => {
         <div className="col-9 ms-5">
           <div className="row mx-auto">
             {friends.map((friend, index) => (
-              <Card key={index} image={friend.image} name={friend.name} />
+              <FriendCard key={index} image={friend.image} name={friend.name} />
             ))}
           </div>
         </div>
