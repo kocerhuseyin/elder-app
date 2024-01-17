@@ -1,0 +1,22 @@
+.card {
+  background-color: #EBE3D5;
+  border-color: transparent;
+}
+
+.card-title {
+  color: #776B5D;
+  font-size: x-large !important;
+}
+
+.button {
+  color: #776b5d;
+  background-color: #776B5D40 !important;
+  border: none;
+  border-radius: 5rem;
+  cursor: pointer;
+  width: 100%;
+}
+
+.card-body {
+  padding-bottom: 0;
+}
