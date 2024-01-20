@@ -265,4 +265,55 @@ router.get('/fetch-messages/:receiverId', authenticateToken, async (req, res) =>
   }
 });
 
+// Create an alarm
+router.post('/alarms', authenticateToken, async (req, res) => {
+  try {
+    const newAlarm = new Alarm({ ...req.body, userId: req.user.id });
+    const savedAlarm = await newAlarm.save();
+    res.status(201).json(savedAlarm);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// Update an alarm
+router.put('/alarms/:alarmId', authenticateToken, async (req, res) => {
+  try {
+    const updatedAlarm = await Alarm.findByIdAndUpdate(
+      req.params.alarmId,
+      req.body,
+      { new: true, runValidators: true }
+    );
+    if (!updatedAlarm) {
+      return res.status(404).send('Alarm not found');
+    }
+    res.json(updatedAlarm);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// Delete an alarm
+router.delete('/alarms/:alarmId', authenticateToken, async (req, res) => {
+  try {
+    const deletedAlarm = await Alarm.findByIdAndDelete(req.params.alarmId);
+    if (!deletedAlarm) {
+      return res.status(404).send('Alarm not found');
+    }
+    res.status(200).send('Alarm deleted');
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// Fetch all alarms for a user
+router.get('/alarms', authenticateToken, async (req, res) => {
+  try {
+    const alarms = await Alarm.find({ userId: req.user.id });
+    res.json(alarms);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 module.exports = router;
