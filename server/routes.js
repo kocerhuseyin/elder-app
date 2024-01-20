@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('./models/User');
 const Chat = require('./models/Chat');
+const Alarm = require('./models/Alarm');
 
 const router = express.Router();
 
@@ -277,7 +278,7 @@ router.post('/alarms', authenticateToken, async (req, res) => {
 });
 
 // Update an alarm
-router.put('/alarms/:alarmId', authenticateToken, async (req, res) => {
+router.put('/update-alarm/:alarmId', authenticateToken, async (req, res) => {
   try {
     const updatedAlarm = await Alarm.findByIdAndUpdate(
       req.params.alarmId,
@@ -294,7 +295,7 @@ router.put('/alarms/:alarmId', authenticateToken, async (req, res) => {
 });
 
 // Delete an alarm
-router.delete('/alarms/:alarmId', authenticateToken, async (req, res) => {
+router.delete('/delete-alarm/:alarmId', authenticateToken, async (req, res) => {
   try {
     const deletedAlarm = await Alarm.findByIdAndDelete(req.params.alarmId);
     if (!deletedAlarm) {
@@ -307,7 +308,7 @@ router.delete('/alarms/:alarmId', authenticateToken, async (req, res) => {
 });
 
 // Fetch all alarms for a user
-router.get('/alarms', authenticateToken, async (req, res) => {
+router.get('/get-alarms', authenticateToken, async (req, res) => {
   try {
     const alarms = await Alarm.find({ userId: req.user.id });
     res.json(alarms);
