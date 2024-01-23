@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import LogoutIcon from "../images/logout.svg";
 import Navbar from "../components/navbar/Navbar";
 import Sidebar from "../components/sidebar/Sidebar";
