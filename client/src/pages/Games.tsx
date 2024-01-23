@@ -3,24 +3,15 @@ import Navbar from "../components/navbar/Navbar";
 import LogoutIcon from "../images/logout.svg";
 import Sidebar from "../components/sidebar/Sidebar";
 import Footer from "../components/footer/Footer";
-import Game1 from "../images/game1.svg";
-import Game2 from "../images/game2.svg";
+import Game1 from "../images/blackjack.svg";
 import GameCard from "../components/gameCard/GameCard";
 
 const Games: React.FC = () => {
   const games = [
     {
       image: Game1,
-      name: "Game 1",
-    },
-    {
-      image: Game2,
-      name: "Game 2",
-    },
-    {
-      image: Game1,
-      name: "Game 3",
-    },
+      name: "BlackJack",
+    }
   ];
   return (
     <>
