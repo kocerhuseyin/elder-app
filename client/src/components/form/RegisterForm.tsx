@@ -9,6 +9,15 @@ const RegisterForm = () => {
     <form className="col-3 form">
       <div data-mdb-input-init className="form-outline mb-4">
         <input
+          type="text"
+          id="userName"
+          className="form-control p-3 rounded-5 border-0"
+          placeholder="Kullanıcı adı"
+        />
+      </div>
+
+      <div data-mdb-input-init className="form-outline mb-4">
+        <input
           type="email"
           id="email"
           className="form-control p-3 rounded-5 border-0"
@@ -25,24 +34,20 @@ const RegisterForm = () => {
         />
       </div>
 
-      <div data-mdb-input-init className="form-outline mb-4">
-        <div className="d-md-flex justify-content-center align-items-center mb-4 py-2">
+      <div data-mdb-input-init className="form-outline mb-4 row">
+        <div className="d-md-flex justify-content-center align-items-center mb-4 py-2 col-6">
           <h6 id="gender" className="mb-0 me-4">
             Cinsiyet:{" "}
           </h6>
-          <select className="gender col-3">
+          <select className="gender">
             <option>Kadın</option>
             <option>Erkek</option>
           </select>
         </div>
-      </div>
 
-      <div data-mdb-input-init className="form-outline mb-4">
-        <div className="d-md-flex justify-content-center align-items-center mb-4 py-2">
+        <div className="d-md-flex justify-content-center align-items-center mb-4 py-2 col-6">
           <h6 className="mb-0 me-4">Yaş: </h6>
-          <div className="col-3">
-            <input type="number" id="age" className="form-control age" />
-          </div>
+          <input type="number" id="age" className="form-control age" />
         </div>
       </div>
 

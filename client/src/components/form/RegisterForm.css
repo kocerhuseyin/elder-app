@@ -4,7 +4,10 @@
 #password,
 #password:focus,
 #password::placeholder,
-#gender {
+#gender,
+#userName,
+#userName:focus,
+#userName::placeholder {
   background-color: #f1efef;
   font-weight: bold;
   color: #776b5d;
@@ -41,10 +44,11 @@
 .form h6,
 .gender-label {
   font-weight: bold;
-  background-color: transparent !important
+  background-color: transparent !important;
 }
 
-.gender, .age {
+.gender,
+.age {
   background-color: #f1efef;
   color: #776b5d;
   padding-left: 1rem;
