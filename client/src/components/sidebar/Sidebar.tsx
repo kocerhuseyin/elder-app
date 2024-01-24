@@ -10,7 +10,7 @@ const Sidebar = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="d-block sidebar col-2 pt-4 h-100">
+    <div className="d-block sidebar col-3 pt-4 h-100">
       <div className="list-group mx-4">
         <button
           className={

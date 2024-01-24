@@ -3,7 +3,7 @@ import "./FriendCard.css";
 
 const FriendCard = ({ image, name }: { image: string; name: string }) => {
   return (
-    <div className="card col-2 m-5">
+    <div className="card col-4 m-5">
       <img
         width="75%"
         className="rounded-circle mx-auto"
