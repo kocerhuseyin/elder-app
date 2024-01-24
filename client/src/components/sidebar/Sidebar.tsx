@@ -19,7 +19,7 @@ const Sidebar = () => {
           }
           onClick={() => navigate("/friends")}
         >
-          <img src={FriendsIcon} alt="FriendsIcon" className="me-3 ps-5" />
+          <img src={FriendsIcon} alt="FriendsIcon" className="me-3" />
           <span className="align-self-center">Arkadaşlar</span>
         </button>
         <button
@@ -29,7 +29,7 @@ const Sidebar = () => {
           }
           onClick={() => navigate("/chats")}
         >
-          <img src={ChatsIcon} alt="ChatsIcon" className="me-3 ps-5" />
+          <img src={ChatsIcon} alt="ChatsIcon" className="me-3" />
           <span className="align-self-center">Sohbetler</span>
         </button>
         <button
@@ -39,7 +39,7 @@ const Sidebar = () => {
           }
           onClick={() => navigate("/games")}
         >
-          <img src={GamesIcon} alt="GamesIcon" className="me-3 ps-5" />
+          <img src={GamesIcon} alt="GamesIcon" className="me-3" />
           <span className="align-self-center">Oyunlar</span>
         </button>
         <button
@@ -49,7 +49,7 @@ const Sidebar = () => {
           }
           onClick={() => navigate("/reminders")}
         >
-          <img src={RemindersIcon} alt="RemindersIcon" className="me-3 ps-5" />
+          <img src={RemindersIcon} alt="RemindersIcon" className="me-3" />
           <span className="align-self-center">Anımsatıcılar</span>
         </button>
       </div>
