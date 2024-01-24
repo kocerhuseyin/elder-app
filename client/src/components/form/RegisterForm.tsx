@@ -25,6 +25,27 @@ const RegisterForm = () => {
         />
       </div>
 
+      <div data-mdb-input-init className="form-outline mb-4">
+        <div className="d-md-flex justify-content-center align-items-center mb-4 py-2">
+          <h6 id="gender" className="mb-0 me-4">
+            Cinsiyet:{" "}
+          </h6>
+          <select className="gender col-3">
+            <option>Kadın</option>
+            <option>Erkek</option>
+          </select>
+        </div>
+      </div>
+
+      <div data-mdb-input-init className="form-outline mb-4">
+        <div className="d-md-flex justify-content-center align-items-center mb-4 py-2">
+          <h6 className="mb-0 me-4">Yaş: </h6>
+          <div className="col-3">
+            <input type="number" id="age" className="form-control age" />
+          </div>
+        </div>
+      </div>
+
       <button
         data-mdb-ripple-init
         type="button"
