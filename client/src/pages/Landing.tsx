@@ -6,7 +6,6 @@ import JoinUs from "../components/joinUs/JoinUs";
 import Discover from "../components/discover/Discover";
 import Works from "../components/works/Works";
 import AboutUs from "../components/aboutUs/AboutUs";
-import Games from "./Games";
 
 const Landing: React.FC = () => {
   return (
@@ -15,10 +14,6 @@ const Landing: React.FC = () => {
       <div className="box">
         <JoinUs />
       </div>
-      <div className="box bg-lighter">
-        <Games />
-      </div>
-      <Navbar />
       <div className="box bg-light">
         <Discover />
       </div>

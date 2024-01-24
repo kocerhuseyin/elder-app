@@ -14,7 +14,7 @@ const ChatCard = ({
   return (
     <div className="card col-10 mb-5">
       <div className="row my-3 ms-2">
-        <div className="col-1 text-center">
+        <div className="col-2 text-center">
           <img
             width="100%"
             className="rounded-circle mx-auto"
@@ -26,8 +26,8 @@ const ChatCard = ({
           <h5 className="card-title fw-bolder">{name}</h5>
           <p className="card-text">{message}</p>
         </div>
-        <button className="col-1 my-auto close-button">
-          <img width="40%" alt="Close" src={Close} />
+        <button className="col-2 my-auto close-button">
+          <img width="30%" alt="Close" src={Close} />
         </button>
       </div>
     </div>

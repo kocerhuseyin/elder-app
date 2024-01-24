@@ -13,7 +13,7 @@ const ReminderCard = ({
   completed: boolean;
 }) => {
   return (
-    <div className="card col-2 m-5">
+    <div className="card col-4 m-5">
       <div className="h-100 text-center mt-5">
         <img width="75%" alt={image} src={image} />
       </div>

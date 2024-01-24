@@ -23,13 +23,15 @@ const JoinUs = () => {
           Zamanınızın tadını çıkarmak için etkileşimli ve anlamlı aktivitelerle
           dolu bir platformu deneyimleyin.
         </p>
-        <button
-          type="button"
-          className="display-6 fw-bold mt-5 p-3 button ps-5 pe-5"
-          onClick={() => navigate("/register")}
-        >
-          Şimdi Katıl
-        </button>
+        <div className="col-6">
+          <button
+            type="button"
+            className="display-6 fw-bold mt-3 p-3 button ps-5 pe-5"
+            onClick={() => navigate("/register")}
+          >
+            Şimdi Katıl
+          </button>
+        </div>
       </div>
     </div>
   );
