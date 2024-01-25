@@ -340,15 +340,17 @@ router.get(
       if (!receiverUser) {
         return res.status(404).send("Receiver not found");
       }
-
       // Find the chat between sender and receiver
       const chat = await Chat.findOne({
         participants: { $all: [senderId, receiverUser._id] },
       }).populate("messages.sender", "username"); // Populate sender details in each message
-
+      console.log("Sender ID:", senderId);
+      console.log("Receiver User ID:", receiverUser._id);
+      console.log("Chat found:", chat);
       if (!chat) {
         return res.status(404).send("Chat not found");
       }
+      console.log("Receiver Username:", receiverUsername);
 
       // Return the entire chat including all messages
       res.status(200).json(chat);
