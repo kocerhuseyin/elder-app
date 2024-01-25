@@ -1,6 +1,5 @@
 import React from "react";
 import "./ChatCard.css";
-import Close from "../../images/close.svg";
 
 interface Message {
   sender: {
@@ -22,7 +21,7 @@ const ChatCard: React.FC<ChatCardProps> = ({ image, name, messages }) => {
   return (
     <div className="card col-10 mb-5">
       <div className="row my-3 ms-2">
-        <div className="col-1 text-center">
+        <div className="col-1 text-center my-auto">
           <img
             width="100%"
             className="rounded-circle mx-auto"
@@ -38,9 +37,6 @@ const ChatCard: React.FC<ChatCardProps> = ({ image, name, messages }) => {
             </p>
           ))}
         </div>
-        <button className="col-1 my-auto close-button">
-          <img width="40%" alt="Close" src={Close} />
-        </button>
       </div>
     </div>
   );

@@ -13,7 +13,7 @@ interface Friend {
   _id: string;
   username: string;
   profileInfo: {
-    gender: 'Erkek' | 'Kadın';
+    gender: "Erkek" | "Kadın";
     age: number;
   };
 }
@@ -38,7 +38,7 @@ const Chats: React.FC = () => {
   const [chats, setChats] = useState<Chat[]>([]);
   const [friends, setFriends] = useState<Friend[]>([]);
   const [selectedFriendId, setSelectedFriendId] = useState<string | null>(null);
-  const [messageInput, setMessageInput] = useState<string>('');
+  const [messageInput, setMessageInput] = useState<string>("");
   const [loadingChats, setLoadingChats] = useState<boolean>(false);
   const navigate = useNavigate();
 
@@ -58,11 +58,13 @@ const Chats: React.FC = () => {
     }
   };
 
-const fetchChats = async () => {
+  const fetchChats = async () => {
     if (!selectedFriendId) return;
 
     try {
-      const selectedFriend = friends.find(friend => friend._id === selectedFriendId);
+      const selectedFriend = friends.find(
+        (friend) => friend._id === selectedFriendId
+      );
       if (!selectedFriend) {
         console.error("Selected friend not found");
         return;
@@ -79,7 +81,6 @@ const fetchChats = async () => {
       console.log("API Response:", response.data);
       setChats([response.data]); // Tek bir chat nesnesi dizi olarak ayarlanÄ±r
       console.log("Updated chats state:", chats);
-
     } catch (error) {
       console.error("Error fetching chats:", error);
     }
@@ -91,7 +92,9 @@ const fetchChats = async () => {
         return;
       }
 
-      const selectedFriend = friends.find((friend) => friend._id === selectedFriendId);
+      const selectedFriend = friends.find(
+        (friend) => friend._id === selectedFriendId
+      );
 
       if (!selectedFriend) {
         console.error("Selected friend not found");
@@ -149,64 +152,64 @@ const fetchChats = async () => {
         <div className="col-8 ms-5">
           <div className="row mx-auto mt-5">
             {selectedFriendId ? (
-  <>
-    {loadingChats && <div>Loading chats...</div>}
-    {chats && chats.length > 0 ? (
-      chats.map((messages) => {
-        const friendId = messages.participants.find(
-          (participant) => participant !== localStorage.getItem("userId")
-        );
-        const friend = friends.find((f) => f._id === friendId);
-        if (!friend) return null;
-
-        return (
-          <ChatCard
-            key={messages._id}
-            image={Friend1}
-            name={friend.username}
-            messages={messages.messages}
-          />
-        );
-      })
-    ) : (
-      // Handle case where chats is not an array or is empty
-      <div>No messages to display</div>
-    )}
-    <div className="mt-3">
-      <input
-        type="text"
-        placeholder="Write a message..."
-        value={messageInput}
-        onChange={(e) => setMessageInput(e.target.value)}
-        className="form-control mr-2"
-        style={{ width: "80%", borderRadius: "5px", padding: "8px" }}
-      />
-      <button
-        onClick={handleSendMessage}
-        className="btn btn-primary"
-        style={{ borderRadius: "5px", padding: "8px" }}
-      >
-        Send
-      </button>
-    </div>
-  </>
-) : (
-  friends.map((friend) => (
-    <div
-      key={friend._id}
-      onClick={() => setSelectedFriendId(friend._id)}
-      style={{ cursor: "pointer" }}
-    >
-      <ChatCard
-        key={friend._id}
-        image={Friend1}
-        name={friend.username}
-        messages={[]}
-      />
-    </div>
-  ))
-)}
-
+              <>
+                {loadingChats && <div>Loading chats...</div>}
+                {chats.length === 0 && !loadingChats && (
+                  <div>No chats found</div>
+                )}
+                {chats.length > 0 &&
+                  chats.map((chat) => (
+                    <div key={chat._id}>
+                      {chat.messages.map((message) => (
+                        <div key={message._id}>
+                          <ChatCard
+                            key={message._id}
+                            image={Friend1}
+                            name={message.sender.username}
+                            messages={[message]}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  ))}
+                <div className="mt-3">
+                  <input
+                    type="text"
+                    placeholder="Write a message..."
+                    value={messageInput}
+                    onChange={(e) => setMessageInput(e.target.value)}
+                    className="form-control mr-2"
+                    style={{
+                      width: "80%",
+                      borderRadius: "5px",
+                      padding: "8px",
+                    }}
+                  />
+                  <button
+                    onClick={handleSendMessage}
+                    className="btn btn-primary"
+                    style={{ borderRadius: "5px", padding: "8px" }}
+                  >
+                    Send
+                  </button>
+                </div>
+              </>
+            ) : (
+              friends.map((friend) => (
+                <div
+                  key={friend._id}
+                  onClick={() => setSelectedFriendId(friend._id)}
+                  style={{ cursor: "pointer" }}
+                >
+                  <ChatCard
+                    key={friend._id}
+                    image={Friend1}
+                    name={friend.username}
+                    messages={[]}
+                  />
+                </div>
+              ))
+            )}
           </div>
         </div>
       </div>
