@@ -39,7 +39,7 @@ const Sidebar = () => {
           }
           onClick={() => navigate("/games")}
         >
-          <img src={GamesIcon} alt="GamesIcon" className="me-3 ps-5" />
+          <img src={GamesIcon} alt="GamesIcon" className="me-5 ps-5" />
           <span className="align-self-center">Oyunlar</span>
         </button>
         <button

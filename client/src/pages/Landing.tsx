@@ -15,9 +15,6 @@ const Landing: React.FC = () => {
       <div className="box">
         <JoinUs />
       </div>
-      <div className="box bg-lighter">
-        <Games />
-      </div>
       <Navbar />
       <div className="box bg-light">
         <Discover />

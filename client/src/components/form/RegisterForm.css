@@ -1,9 +1,18 @@
-#email, #email:focus, #email::placeholder, #password, #password:focus, #password::placeholder{
+#email,
+#email:focus,
+#email::placeholder,
+#password,
+#password:focus,
+#password::placeholder,
+#gender,
+#userName,
+#userName:focus,
+#userName::placeholder {
   background-color: #f1efef;
   font-weight: bold;
   color: #776b5d;
   padding-left: 1rem;
-  font-size:larger;
+  font-size: larger;
 }
 
 .btn {
@@ -25,12 +34,28 @@
   color: #776b5d;
 }
 
-.form p{
+.form p,
+.form h6,
+.gender-label {
   color: #776b5d;
   font-size: large;
 }
 
-.form{
+.form h6,
+.gender-label {
+  font-weight: bold;
+  background-color: transparent !important;
+}
+
+.gender,
+.age {
+  background-color: #f1efef;
+  color: #776b5d;
+  padding-left: 1rem;
+  border-radius: 2rem;
+}
+
+.form {
   position: absolute;
   top: 50%;
   left: 50%;
