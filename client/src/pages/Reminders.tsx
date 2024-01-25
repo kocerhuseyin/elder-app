@@ -12,35 +12,29 @@ const Reminders: React.FC = () => {
   const navigate = useNavigate();
   const handleImageClick = () => {
     navigate("/login");
-    console.log('logout');
+    console.log("logout");
   };
   const reminders = [
     {
       image: ReminderForMedicine,
+      days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      time: "10:00",
       description: "Take your medicine. Should be taken 3 times a day.",
       completed: true,
     },
     {
       image: ReminderForWater,
+      days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      time: "10:00",
       description: "Drink water",
       completed: false,
-    },
-    {
-      image: ReminderForMedicine,
-      description: "Take your medicine. Sohuld be taken 3 times a day.",
-      completed: false,
-    },
-    {
-      image: ReminderForWater,
-      description: "Drink water",
-      completed: true,
     },
   ];
   return (
     <>
       <Navbar />
       <button
-      onClick={handleImageClick}
+        onClick={handleImageClick}
         style={{
           backgroundColor: "transparent",
           border: "none",
@@ -51,10 +45,7 @@ const Reminders: React.FC = () => {
           cursor: "pointer",
         }}
       >
-      <img
-        src={LogoutIcon}
-        alt="LogoutIcon"
-      />
+        <img src={LogoutIcon} alt="LogoutIcon" />
       </button>
       <div className="row h-100" style={{ backgroundColor: "#F1EFEF" }}>
         <Sidebar />
@@ -64,6 +55,8 @@ const Reminders: React.FC = () => {
               <ReminderCard
                 key={index}
                 image={reminder.image}
+                days={reminder.days}
+                time={reminder.time}
                 description={reminder.description}
                 completed={reminder.completed}
               />

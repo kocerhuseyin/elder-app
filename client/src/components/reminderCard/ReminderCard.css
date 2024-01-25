@@ -9,10 +9,11 @@
 }
 
 .button {
-  color: #776b5d;
-  background-color: #776B5D40 !important;
+  background-color: transparent !important;
   border: none;
   border-radius: 5rem;
   cursor: pointer;
   width: 100%;
+  display: flex;
+  justify-content: center;
 }
